@@ -8,7 +8,7 @@
     background: #FFF;
     box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.07);
     width: 50%;
-    height: 500px;
+    height: 550px;
 }
 .block h2{
     color: #292A2D;
@@ -60,12 +60,9 @@ button{
     border-radius: 8px;
     border: 1px solid rgba(91, 102, 111, 0.25);
     padding-left: 30px;
-    margin-bottom: 10px;
 }
-.block span{
-    margin-top: 20px;
-    color:#0000ff;
-    cursor: pointer;
+span{
+
 }
 .googleicon{
  margin-right: 10px;
@@ -81,7 +78,7 @@ button{
     justify-content: center;
     align-items: center;
     position: relative;
-
+    margin-bottom: 10px;
 }
 
 .upperblock{
