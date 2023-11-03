@@ -1,11 +1,12 @@
 import style from "./SignUp.module.css";
 import googleicon from "../../Images/google_g_logo.svg.png";
 import arrow from "../../Images/right-arrow.png";
-import { auth, provider } from "../../firebase";
+import { auth, provider,firestore } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import toast, { Toaster } from "react-hot-toast";
+
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -27,6 +28,15 @@ export default function SignUp() {
           password
         );
         const user = userCredential.user;
+
+        if (user) {
+          await firestore.collection('url').doc(user.uid).set({
+            email: user.email,
+            qr:[]
+            // Other user details you want to store
+          });
+        }
+
         console.log("User signed up:", user);
         toast.success("Sucessfully signed in");
       } catch (error) {

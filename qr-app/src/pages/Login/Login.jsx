@@ -1,7 +1,7 @@
 import style from "./Login.module.css";
 import googleicon from "../../Images/google_g_logo.svg.png";
 import arrow from "../../Images/right-arrow.png";
-import { auth, provider } from "../../firebase";
+import { auth, provider,firestore } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
@@ -21,6 +21,15 @@ export default function Login() {
     try {
       const userCredential = await auth.signInWithEmailAndPassword(email, password);
       const user = userCredential.user;
+
+      if (user) {
+        await firestore.collection('url').doc(user.uid).set({
+          email: user.email,
+          password:user.password,
+          qr:[]
+          // Other user details you want to store
+        });
+      }
       console.log('User signed in:', user);
     } catch (error) {
       toast.error("Something went wrong. Please check your email and password.");

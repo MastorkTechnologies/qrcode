@@ -15,8 +15,10 @@ import minus from "../Images/minus-circle.png"
 import homeimg from "../Images/Group 113.png"
 import grpProfile from "../Images/Group 116.png"
 import Footer from "../components/Footer/Footer"
+import {useNavigate} from "react-router-dom"
 
 export default function Landing() {
+    const navigate=useNavigate()
     function toggleMenu1() {
         console.log("yes i m clicked")
         const menu = document.getElementById("optionClass1");
@@ -41,7 +43,8 @@ export default function Landing() {
                 <div className={style.leftB1}>
                     <h1>AI-Powered Custom QR Codes</h1>
                     <p style={{ margin: "0px" }}>Next-Level Branding with AI QR Code.</p>
-                    <button className={style.getstarted}>Get Started</button>
+                    <button className={style.getstarted} onClick={()=>navigate("/scanner")}>Get Started</button>
+                    <button onClick={()=>navigate('/dashboard')}>Dashboard</button>
                     <img className={style.star} src={star} />
                     <p style={{ fontWeight: "800", margin: "5px 0px 0px 0px" }}>Best QR code editor in market!</p>
                     <p>Consectetur adipiscing elit. Vehicula massa in enim luctus. Rutrum arcu, aliquam nulla tincidunt gravida. Cursus convallis dolor semper pretium ornare.</p>

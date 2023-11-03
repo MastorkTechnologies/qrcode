@@ -1,0 +1,24 @@
+
+input{
+    padding: 5px;
+}
+.single-outer{
+    gap: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.single-contentouter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    flex-direction: column;
+    width: 40%;
+}
+.save-btn{
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 5px;
+}
