@@ -71,7 +71,7 @@ export default function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button style={{ backgroundColor: "#3d3db3" }} onClick={emailSignIn}>Done</button>
+        <button style={{ backgroundColor: "#3d3db3" }} onClick={emailSignIn}>Login</button>
         <p>or</p>
         <button onClick={signin}>
           <img className={style.googleicon} src={googleicon} /> Continue with

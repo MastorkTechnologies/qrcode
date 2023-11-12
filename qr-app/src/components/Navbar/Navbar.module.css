@@ -1,25 +1,44 @@
-.block{
+.block {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 5em;
 
 }
-.logo{
+
+.logo {
     padding-left: 2%;
 
 
 }
-.logo img{
+
+.logo img {
     width: 120px;
 }
-ul{
+
+
+
+.menuIcon {
+    display: none;
+    cursor: pointer;
+}
+
+/* Menu styles */
+.menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+/*ul{
     display: flex;
     justify-content: center;
     align-items: center;
 
-}
-li{
+}*/
+.menu li {
     color: var(--gray-900, #18181B);
     font-family: Plus Jakarta Sans;
     font-size: 16px;
@@ -34,7 +53,7 @@ li{
 
 }
 
-.startbtn{
+.startbtn {
     display: flex;
     width: 135px;
     height: 45px;
@@ -56,3 +75,56 @@ li{
     margin-right: 2%;
 
 }
+
+.dashboardbtn,.logoutbtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 10px;
+    background-color: black;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+
+
+@media screen and (max-width: 600px) {
+    
+
+    .menuIcon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        flex-direction: column;
+        margin-right: 2rem;
+    }
+    .menuIcon span{
+        border: 1px solid black;
+        width: 1rem;
+
+    }
+
+    .menu {
+        flex-direction: column;
+        position: fixed;
+        top: 60px;
+        /* Adjust top spacing to avoid overlap with the menu toggle */
+        right: 11px;
+        width: 33%;
+        background-color: #f0f0f0;
+        padding: 20px;
+    }
+
+    .menu li {
+        margin: 10px 0;
+    }
+
+    #menu-toggle:checked+.menu {
+        display: flex;
+    }
+}
+

@@ -2,12 +2,16 @@
 input{
     padding: 5px;
 }
+.qr-image{
+    width: 50%;
+}
 .single-outer{
     gap: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin-top: 4rem;
 }
 .single-contentouter{
     display: flex;
@@ -15,10 +19,127 @@ input{
     align-items: center;
     gap: 30px;
     flex-direction: column;
-    width: 40%;
+    width: 51%;
+}
+.single-contentinner{
+    display: flex;
+    gap: 5px;
+    width: 61%;
+    justify-content: center;
+    align-items: center;
 }
 .save-btn{
-    border: 2px solid black;
     border-radius: 5px;
     padding: 5px;
+    width: 40%;
+}
+.single-label{
+    font-size: 20px;
+    font-weight: 700;
+}
+.single-input{
+    border-radius: 8px;
+    border-color:grey;
+    font-size: 20px;
+    /*width: 29rem;
+    height: 3rem;*/
+    text-align: center;
+    font-weight: 700;
+    border: none;
+}
+.editButton{
+    width: 30%;
+}
+.wrapperInputBox{
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid grey;
+    border-radius: 7px;
+    width: 70%;
+    height: 29px;
+
+}
+.analytics-outer{
+    width: 62%;
+}
+.analytics-container{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+.container1{
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 70%;
+}
+.innerContainer1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #eeebeb;
+    border-radius: 10px;
+    padding: 5px;
+}
+.wrapper-head{
+    display: flex;
+    align-items: center;
+    gap: 90px;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.data-info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.data-display{
+    height: 8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.innerContainer2{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 8px;
+}
+.inner1{
+    background: #eeebeb;
+    width: 30%;
+    border-radius: 10px;
+    padding-left: 18px;
+}
+.data-display2{
+    height: 5rem;
+}
+.container2{
+    background: #eeebeb;
+    border-radius: 10px;
+    width: 20%;
+    padding-left: 20px
+}
+@media (max-width:600px) {
+    .single-outer{
+       width: -webkit-fill-available; 
+    }
+    .single-headingouter{
+        width: -webkit-fill-available;
+        text-align: center;
+    }
+    .single-contentouter{
+        width: 75%;
+    }
+    .wrapperInputBox{
+        width: max-content;
+    }
+    .qr-image{
+        width: 60%;
+    }
 }

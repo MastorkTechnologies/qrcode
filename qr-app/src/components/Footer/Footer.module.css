@@ -103,3 +103,32 @@
     text-decoration: none;
     list-style: none;
 }
+@media (max-width:600px) {
+    .block{
+        width:-webkit-fill-available ;
+    }
+    .top{
+        width: 95%;
+    }
+    .left{
+        width: 60%;
+    }
+    .left h2{
+        width: 100%;
+        font-size: 20px;
+    }
+    .right{
+        width: 40%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .right button{
+        width: 100%;
+    }
+    .one p,.two p{
+        width: 100%;
+    }
+
+    
+}

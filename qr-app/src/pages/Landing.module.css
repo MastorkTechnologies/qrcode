@@ -1,36 +1,107 @@
-.block1{
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999999;
+}
+
+.popup_inner {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+}
+.rightB1 img{
+    width: 85%;
+}
+
+
+
+
+
+.qrcodecontainer {
+    margin: 3rem;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+}
+
+.origheading {
+    font-weight: 600;
+}
+
+.originput {
+    width: 13rem;
+    margin: 1rem;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+
+
+.standardqr,
+.aiqr {
+    border: 2px solid rgb(230, 222, 222);
+    border-radius: 20px;
+    background: black;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.wrapperNames {
+    display: flex;
+    gap: 20px;
+}
+
+
+
+.block1 {
     background: url("../Images/Group\ 10.png");
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     padding-top: 4em;
 }
-.leftB1{
+
+.leftB1 {
     width: 36%;
 }
-.star{
+
+.star {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 4em;
 }
-.rightB1 img{
+
+.rightB1 img {
     position: relative;
     left: 60px;
     bottom: 43px;
 }
-.detail{
- display: flex;
+
+.detail {
+    display: flex;
 }
-.detail p{
+
+.detail p {
     margin: 0px;
     font-weight: 800;
-    font-size: 15px;  
+    font-size: 15px;
 }
-.profile{
 
-}
-.leftB1 p{
+.profile {}
+
+.leftB1 p {
     color: var(--gray-600, #52525B);
     font-family: Inter;
     font-size: 16px;
@@ -38,7 +109,8 @@
     font-weight: 400;
     line-height: 28px;
 }
-.leftB1 h1{
+
+.leftB1 h1 {
     color: var(--gray-900, #18181B);
     font-family: Plus Jakarta Sans;
     font-size: 58px;
@@ -47,7 +119,8 @@
     line-height: 67px;
     margin: 0px;
 }
-.getstarted{
+
+.getstarted {
     width: 191px;
     height: 61px;
     flex-shrink: 0;
@@ -62,7 +135,8 @@
     line-height: 28px;
     margin-top: 2em;
 }
-.block2{
+
+.block2 {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -73,7 +147,8 @@
     background-attachment: fixed;
     background-position: center;
 }
-.headB2{
+
+.headB2 {
     color: var(--gray-900, #18181B);
     text-align: center;
     font-family: Plus Jakarta Sans;
@@ -84,7 +159,8 @@
     margin: 0px;
 
 }
-.paraB2{
+
+.paraB2 {
     color: var(--gray-600, #52525B);
     text-align: center;
     font-family: Plus Jakarta Sans;
@@ -93,14 +169,16 @@
     font-weight: 400;
     line-height: 28px;
 }
-.cardsBlock{
+
+.cardsBlock {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-top: 3em;
 }
-.cardleft{
+
+.cardleft {
     width: 58%;
     display: flex;
     justify-content: center;
@@ -108,21 +186,26 @@
     position: relative;
     right: 17%;
 }
+
 .left2 h2 {
- text-align: left;
+    text-align: left;
 }
-.left2 p{
+
+.left2 p {
     text-align: left;
 
 }
-.right2 h2{
- text-align: right;
+
+.right2 h2 {
+    text-align: right;
 }
-.right2 p{
+
+.right2 p {
     text-align: right;
 
 }
-.cardright{
+
+.cardright {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -130,6 +213,7 @@
     position: relative;
     left: 17%;
 }
+
 .cardsBlock p {
     color: var(--gray-700, #3F3F46);
     font-family: Plus Jakarta Sans;
@@ -138,7 +222,8 @@
     font-weight: 400;
     line-height: 26px;
 }
-.cardsBlock h2{
+
+.cardsBlock h2 {
     color: var(--gray-900, #18181B);
     font-family: Plus Jakarta Sans;
     font-size: 42px;
@@ -146,11 +231,13 @@
     font-weight: 700;
     line-height: 48px;
 }
-.cardsBlock img{
+
+.cardsBlock img {
     width: 50%;
 
 }
-.block3{
+
+.block3 {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -163,7 +250,7 @@
     padding-bottom: 6em;
 }
 
-.headB3{
+.headB3 {
     color: var(--gray-900, #18181B);
     text-align: center;
     font-family: Plus Jakarta Sans;
@@ -173,7 +260,8 @@
     line-height: 48px;
     margin: 0px;
 }
-.paraB3{
+
+.paraB3 {
     color: var(--gray-600, #52525B);
     text-align: center;
     font-family: Plus Jakarta Sans;
@@ -182,15 +270,17 @@
     font-weight: 400;
     line-height: 28px;
 }
-.cardsB3{
+
+.cardsB3 {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 4em;
     margin-top: 1em;
-    
+
 }
-.card{
+
+.card {
     width: 20%;
     border-radius: 12px;
     border: 1px solid #E2E2E2;
@@ -199,7 +289,8 @@
     margin: 30px;
     padding: 25px;
 }
-.num{
+
+.num {
     width: 41px;
     height: 41px;
     flex-shrink: 0;
@@ -213,10 +304,10 @@
     line-height: 48px;
     text-align: center;
 }
-.cardB3 p{
 
-}
-.cardB3parahead{
+.cardB3 p {}
+
+.cardB3parahead {
     color: #000;
     font-family: Plus Jakarta Sans;
     font-size: 20px;
@@ -224,7 +315,8 @@
     font-weight: 700;
     line-height: 26px;
 }
-.cardB3para{
+
+.cardB3para {
     color: #AAA;
     font-family: Plus Jakarta Sans;
     font-size: 16px;
@@ -233,14 +325,15 @@
     line-height: 26px;
 }
 
-.block4{
+.block4 {
     padding-top: 10em;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
-.headB4{
+
+.headB4 {
     color: var(--gray-900, #18181B);
     text-align: center;
     font-family: Plus Jakarta Sans;
@@ -250,7 +343,8 @@
     line-height: 48px;
     margin: 0px;
 }
-.paraB4{
+
+.paraB4 {
     color: var(--gray-600, #52525B);
     text-align: center;
     font-family: Plus Jakarta Sans;
@@ -261,7 +355,7 @@
 }
 
 
-.cardsB4{
+.cardsB4 {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -269,12 +363,14 @@
     width: 81%;
     margin-top: 3em;
 }
-.cardB4{
+
+.cardB4 {
     width: 27%;
     padding: 18px;
     text-align: center;
 }
-.cardB4para{
+
+.cardB4para {
     color: #AAA;
     font-family: Plus Jakarta Sans;
     font-size: 16px;
@@ -283,7 +379,8 @@
     line-height: 26px;
     text-align: center;
 }
-.cardB4parahead{
+
+.cardB4parahead {
     color: #000;
     font-family: Plus Jakarta Sans;
     font-size: 20px;
@@ -294,11 +391,9 @@
 }
 
 
-.block5{
+.block5 {}
 
-}
-
-.block6{
+.block6 {
     padding-top: 8em;
     display: flex;
     /* flex-direction: column; */
@@ -309,7 +404,7 @@
     padding-bottom: 5em;
 }
 
-.block6 div{
+.block6 div {
     display: flex;
     width: 50%;
     padding: 32px 224px;
@@ -324,7 +419,7 @@
     box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
 }
 
-.cardB6parahead{
+.cardB6parahead {
     color: var(--gray-900, #101828);
     text-align: center;
     font-family: Inter;
@@ -334,7 +429,8 @@
     line-height: 30px;
     margin: 0px;
 }
-.cardB6para{
+
+.cardB6para {
     color: var(--gray-500, #667085);
     text-align: center;
     font-family: Inter;
@@ -344,7 +440,8 @@
     line-height: 28px;
     margin: 0px;
 }
-.block6 button{
+
+.block6 button {
     display: flex;
     padding: 10px 18px;
     justify-content: center;
@@ -361,4 +458,99 @@
     font-weight: 500;
     line-height: 24px;
     margin-top: 3em;
-} 
+}
+
+
+
+@media (max-width:600px) {
+    .block1 {
+        width: -webkit-fill-available;
+        flex-direction: column;
+    }
+
+    .leftB1 {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .leftB1 h1 {
+        width: 100%;
+        font-size: 30px;
+        text-align: center
+    }
+    .getstarted{
+        width: 30%;
+    }
+    .star{
+        margin-top: 2em;
+    }
+    .leftB1 p{
+        padding: 21px;
+    }
+    .rightB1{
+        width: 100%;
+    }
+    .rightB1 img{
+        width: 53%;
+    }
+
+
+    .block2{
+        width: -webkit-fill-available;
+    padding-top: 2em;
+    }
+    .headB2{
+        width: -webkit-fill-available;
+    }
+    .paraB2{
+        width: -webkit-fill-available;
+    }
+    .cardsBlock{
+        width: 100%;
+    }
+    .cardleft{
+        flex-direction: column;
+    width: 80%;
+    right: 0px;
+    }
+    .cardsBlock img{
+        width: 63%;
+    }
+    .cardsBlock h2{
+        font-size: 24px;
+        text-align: justify;
+        
+    }
+    .cardsBlock p{
+        font-size: 16px;
+        text-align: justify;
+    }
+    .cardright{
+        flex-direction: column-reverse;
+        width: 80%;
+        left: 0px;
+    }
+    .card{
+        margin: 26px;
+        padding: 25px;
+        width: 100%;
+    }
+    .block4{
+        padding-top: 0em;
+    }
+    .block6{
+        width: -webkit-fill-available;
+        
+    }
+    .block6 div{
+        padding: 32px 136px;
+    }
+    .block6 img{
+        width: 70%;
+    }
+
+
+}
