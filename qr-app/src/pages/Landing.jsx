@@ -92,14 +92,15 @@ const QRCodeModal = ({ closePopup }) => {
                     const dateAdded = `${year}-${month}-${day}`;
 
                     // Construct the new QR object
-                    const newQRObject = { baseUrl, shorturl, qrLink, dateAdded };
+                    const newQRObject = { baseUrl, shorturl, qrLink, dateAdded, selected };
+                    console.log(newQRObject);
 
                     // Update the 'qr' array or create a new array if it doesn't exist
                     const updatedQRArray = userData.qr ? [...userData.qr, newQRObject] : [newQRObject];
 
                     // Set the updated 'qr' array back in the Firestore document
                     await userDocRef.set({ qr: updatedQRArray }, { merge: true });
-
+                    navigate("/dashboard")
                     console.log('QR object added to Firestore');
                 } else {
                     console.log('User document does not exist.');
@@ -111,14 +112,20 @@ const QRCodeModal = ({ closePopup }) => {
             console.error('Error updating QR object:', error);
         }
     };
+
+    function popUpClose() {
+        closePopup();
+        setSelected('');
+    }
+
     return (
         <div className="modal" style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
             <h2>Select QR Code Type</h2>
             <div className={style.wrapperNames}>
-                <div className={style.standardqr} onClick={() => setSelected('standard')} >Standard QR</div>
-                <div className={style.aiqr} onClick={() => navigate('/scanner')} >AI Art QR</div>
+                <div className={style.standardqr} onClick={() => setSelected('static')} >Static QR</div>
+                <div className={style.aiqr} onClick={() => setSelected('dynamic')}>Dynamic QR</div>
             </div>
-            {selected === 'standard' && <div className={style.qrcodecontainer}>
+            {(selected === 'static' || selected == 'dynamic') && <div className={style.qrcodecontainer}>
                 <div className={style.originalurl}>
                     <label className={style.origheading} htmlFor="originalUrl">Original URL:</label>
                     <input
@@ -133,7 +140,7 @@ const QRCodeModal = ({ closePopup }) => {
           </div>*/}
                 <button style={{ alignSelf: "center" }} onClick={generateQR}>Save</button>
             </div>}
-            <div style={{ border: "2px solid black", borderRadius: "10px", padding: "8px", marginTop: "2rem" }} onClick={closePopup}>Close</div>
+            <div style={{ border: "2px solid black", borderRadius: "10px", padding: "8px", marginTop: "2rem" }} onClick={popUpClose}>Close</div>
         </div>
     );
 };

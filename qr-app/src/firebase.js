@@ -1,11 +1,13 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import firebase from 'firebase/compat/app';
-import {getFireStore} from 'firebase/firestore';
+import { getFireStore } from 'firebase/firestore';
 import 'firebase/compat/auth';
 import 'firebase/compat/storage';
 import 'firebase/compat/firestore';
-import { collection, getDocs, getFirestore, DocumentReference,deleteDoc } from "firebase/firestore";
+import { getAnalytics, initializeAnalytics } from "firebase/analytics";
+
+import { collection, getDocs, getFirestore, DocumentReference, deleteDoc } from "firebase/firestore";
 import {
   doc,
   updateDoc,
@@ -25,7 +27,8 @@ const firebaseConfig = {
   projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
   storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase
@@ -34,7 +37,9 @@ const db = firebaseApp.firestore();
 const auth = firebase.auth();
 const provider = new firebase.auth.GoogleAuthProvider();
 const storage = firebase.storage();
-const firestore=firebase.firestore()
+const firestore = firebase.firestore()
+const analytics = initializeAnalytics(firebaseApp, { measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID });
+
 
 
 
@@ -43,11 +48,11 @@ export const getAllData = async () => {
   let result = []
   snapshot.docs.map((doc) => (
     result.push({ id: doc.id, ...doc.data() })
-    ));
-    console.log("result all url data ", result)
-    return result
+  ));
+  console.log("result all url data ", result)
+  return result
 };
-export const getSingleUrlData=async(id)=>{
+export const getSingleUrlData = async (id) => {
   let result = []
   const snapshot = await getDocs(collection(db, "url"));
   snapshot.docs.map((doc) => {
@@ -57,15 +62,15 @@ export const getSingleUrlData=async(id)=>{
       console.log(doc.id)
       result.push({ id: doc.id, ...doc.data() });
     }
-  }) 
+  })
   console.log("single url firebase", result)
   return result
 
-  
+
 }
 export const deleteDocumentById = async (documentId) => {
   try {
-    const docRef = doc(db,"url", documentId); // Create a reference to the document
+    const docRef = doc(db, "url", documentId); // Create a reference to the document
     await deleteDoc(docRef); // Delete the document
     console.log(`Document with ID ${documentId} deleted successfully.`);
   } catch (error) {
@@ -74,12 +79,12 @@ export const deleteDocumentById = async (documentId) => {
 };
 export const updateDocumentById = async (documentId, updatedData) => {
   try {
-    const docRef = doc(db,"url", documentId); // Create a reference to the document
+    const docRef = doc(db, "url", documentId); // Create a reference to the document
     await updateDoc(docRef, updatedData); // Update the document with the new data
     console.log(`Document with ID ${documentId} updated successfully.`);
   } catch (error) {
     console.error(`Error updating document: ${error}`);
   }
 };
-export { auth, provider, storage ,firestore};
+export { auth, provider, storage, firestore, analytics };
 export default db;

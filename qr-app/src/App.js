@@ -8,9 +8,9 @@ import ReactGA from "react-ga4";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import SingleUrl from "./pages/SingleUrl/SingleUrl";
 import { firestore, auth } from "./firebase";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 
-const track="G-LXVQ7339SV"
+const track = "G-LXVQ7339SV"
 ReactGA.initialize(track);
 
 const RedirectPage = () => {
@@ -35,13 +35,13 @@ const RedirectPage = () => {
         if (doc.exists) {
           const userData = doc.data();
           const qrArray = userData.qr || [];
-          console.log("location",location.pathname.substring(1))
+          console.log("location", location.pathname.substring(1))
 
           // Find the object with the selected shorturl
           const selectedQR = qrArray.find(item => item.shorturl === location.pathname.substring(1));
 
           if (selectedQR) {
-            const absoluteURL = selectedQR.baseUrl.includes('http') ? selectedQR.baseUrl : `http://${selectedQR.baseUrl}`;
+            const absoluteURL = selectedQR.baseUrl.includes('http') ? selectedQR.baseUrl : `https://${selectedQR.baseUrl}`;
             window.location.replace(absoluteURL);
           } else {
             console.error('Original URL not found for the given short URL');
@@ -57,10 +57,10 @@ const RedirectPage = () => {
 };
 
 function App() {
-  useEffect(()=>{
+  useEffect(() => {
     ReactGA.send({ hitType: "pageview", page: window.location.pathname });
 
-  },[window.location.pathname])
+  }, [window.location.pathname])
   return (
     <Routes>
       <Route path="/" element={<Landing />} />
@@ -69,7 +69,7 @@ function App() {
       <Route path="/scanner" element={<Scanner />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/url/:id" element={<SingleUrl />} />
-      <Route path="/:id" element={<RedirectPage/>}/>
+      <Route path="/:id" element={<RedirectPage />} />
     </Routes>
   );
 }

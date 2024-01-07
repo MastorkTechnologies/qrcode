@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { firestore, auth } from "../../firebase";
+import { firestore, auth, analytics } from "../../firebase";
 import { useLocation } from 'react-router-dom';
+import { getGoogleAnalyticsClientId, initializeAnalytics, logEvent, setAnalyticsCollectionEnabled } from "firebase/analytics";
 import ReactGA from "react-ga4";
 import './Dashboard.css'
 import img1 from '../../Images/Sporting-Excellence-big.png'
@@ -65,11 +66,12 @@ const Dashboard = () => {
         }
     };
     const handleBoxClick = (val) => {
-        ReactGA.send({ hitType: "pageview", page: val.shorturl });
+        // ReactGA.send({ hitType: "pageview", page: val.shorturl });
+        logEvent(analytics, `click_${val.shorturl}`);
         navigate(`/${val.shorturl}`)
 
-        /* const absoluteURL = val.baseUrl.includes('http') ? val.baseUrl : `http://${val.baseUrl}`;
-         window.open(absoluteURL, '_blank');*/
+        //  const absoluteURL = val.baseUrl.includes('http') ? val.baseUrl : `http://${val.baseUrl}`;
+        //  window.open(absoluteURL, '_blank');
     }
 
 
@@ -78,33 +80,33 @@ const Dashboard = () => {
 
     return (
         <>
-        <Navbar/>
-        <div className="dash-mainouter">
-            <div className="dash-outer">
-                <div className="dash-div1">
-                    <div className="dash-heading">My QR Codes</div>
-                    <div className="create-btn" onClick={()=>navigate("/scanner")}>Create new QR</div>
+            <Navbar />
+            <div className="dash-mainouter">
+                <div className="dash-outer">
+                    <div className="dash-div1">
+                        <div className="dash-heading">My QR Codes</div>
+                        <div className="create-btn" onClick={() => navigate("/scanner")}>Create new QR</div>
 
-                </div>
-                <div className="dash-div2">
-                    {
-                        list?.map((val, index) => (
-                            <div key={index} className="innermain">
-                                <img src={val.qrLink} alt="img" className="image" />
-                                <div  onClick={() => handleBoxClick(val)} className="dash-listitem">{val.baseUrl}</div>
-                                <div onClick={() => handleEdit(val.shorturl)} className="dash-listitem">Edit</div>
-                                <div className="wrapperTD">
-                                    <div className="date">{val?.dateAdded}</div>
-                                    <div onClick={() => handleDelete(val.shorturl)} className="deleteIcon" ><img src={deleteIcon} alt="img"/></div>
+                    </div>
+                    <div className="dash-div2">
+                        {
+                            list?.map((val, index) => (
+                                <div key={index} className="innermain">
+                                    <img src={val.qrLink} alt="img" className="image" />
+                                    <div onClick={() => handleBoxClick(val)} className="dash-listitem">{val.baseUrl}</div>
+                                    <div onClick={() => handleEdit(val.shorturl)} className="dash-listitem">Edit</div>
+                                    <div className="wrapperTD">
+                                        <div className="date">{val?.dateAdded}</div>
+                                        <div onClick={() => handleDelete(val.shorturl)} className="deleteIcon" ><img src={deleteIcon} alt="img" /></div>
+                                    </div>
                                 </div>
-                            </div>
-                        ))
-                    }
+                            ))
+                        }
 
+                    </div>
                 </div>
             </div>
-        </div>
-        <Footer/>
+            <Footer />
         </>
     );
 };
