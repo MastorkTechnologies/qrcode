@@ -19,7 +19,8 @@ const SingleUrl = () => {
     const [editedQR, setEditedQR] = useState(selectedQR || {
         baseUrl: '',
         shorturl: '',
-        qrLink: ''
+        qrLink: '',
+        selected: ''
         // Add other fields from the selectedQR as needed
     });
 
@@ -27,18 +28,22 @@ const SingleUrl = () => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
             if (user) {
                 setUser(user);
+                setEditedQR({ ...location.state.selectedQR });
             } else {
                 setUser(null);
             }
         });
 
         return () => unsubscribe();
+
+
     }, []);
 
     useEffect(() => {
         ReactGA.send({ hitType: "pageview", page: window.location.pathname });
 
     }, [window.location.pathname])
+
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -56,7 +61,7 @@ const SingleUrl = () => {
                 if (doc.exists) {
                     const data = doc.data();
                     const updatedArray = data.qr.map(item => {
-                        if (item.shorturl === selectedQR.shorturl) {
+                        if (item.shorturl === editedQR.shorturl) {
                             return editedQR;
                         }
                         return item;
@@ -74,87 +79,102 @@ const SingleUrl = () => {
             console.error('Error saving changes:', error);
         }
     };
+    const [editButtonClicked, seteditButtonClicked] = useState(false);
 
 
     return (<>
-    <Navbar/>
-        <div className='single-outer'>
-            <div className='single-headingouter'>
-                <h2>Edit QR Details</h2>
-            </div>
-            <div className='single-contentouter'>
-                <div className='single-contentinner'>
+        <Navbar />
+        {editedQR.selected == 'dynamic'
+            ?
+            <div className='single-outer'>
+                <div className='single-headingouter'>
+                    <h2>Edit QR Details</h2>
+                    <button className='generative-button' onClick={() => navigate('/scanner')}>Generate AI QR</button>
+                </div>
+                <div className='single-contentouter'>
+                    <div className='single-contentinner'>
+                        <div className='wrapperInputBox' >
+                            URL
+                            {editButtonClicked
+                                ?
+                                <input className='single-input' type="text" name="baseUrl" value={editedQR.baseUrl} onChange={handleInputChange} />
+                                :
+                                <input className='single-input' type="text" name="baseUrl" value={editedQR.baseUrl} disabled />}
+                        </div>
+                        <img src={editButton} className='editButton' alt='Edit Image' onClick={() => { seteditButtonClicked(true) }} />
+                    </div>
+                    <img className='qr-image' src={editedQR.qrLink} alt='img' />
+                    <button className='save-btn' onClick={handleSaveChanges}>Save Changes</button>
+
+                </div>
+
+                <div className='analytics-outer'>
+                    <h3 style={{ fontSize: "20px", textAlign: "center" }}>Analytics</h3>
+                    <div className='analytics-container'>
+                        <div className='container1'>
+                            <div className='innerContainer1'>
+                                <div className='wrapper-head'>
+                                    <h3>Visits</h3>
+                                    <div className='data-info'>
+                                        <div className='data-text'>Day</div>
+                                        <div className='data-text'>Week</div>
+                                        <div className='data-text'>Month</div>
+                                        <div className='data-text'>Year</div>
+                                        <div className='data-text'>All Times</div>
+                                    </div>
+                                </div>
+                                <div className='data-display'>
+                                    Hello
+                                </div>
+
+                            </div>
+                            <div className='innerContainer2'>
+                                <div className='inner1'>
+                                    <h3>Device</h3>
+                                    <div className='data-display2'>
+
+                                    </div>
+                                </div>
+                                <div className='inner1'>
+                                    <h3>Browser</h3>
+                                    <div className='data-display2'>
+
+                                    </div>
+                                </div>
+                                <div className='inner1'>
+                                    <h3>OS</h3>
+                                    <div className='data-display2'>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div className='container2'>
+                            <h3>Location</h3>
+                            <div className='data-display3'>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div> :
+            <div className='single-outer'>
+                <div className='single-contentouter'>
                     <div className='wrapperInputBox'>
                         URL
-                    <input className='single-input' type="text" name="baseUrl" value={editedQR.baseUrl} onChange={handleInputChange} />
+                        <input className='single-input' type="text" name="baseUrl" value={editedQR.baseUrl} disabled />
                     </div>
-                    <img src={editButton} className='editButton' alt='Edit Image'/>
+                    <img className='qr-image' src={editedQR.qrLink} alt='img' />
                 </div>
-                <img className='qr-image' src={editedQR.qrLink} alt='img'/>
-                <button className='save-btn' onClick={handleSaveChanges}>Save Changes</button>
-               
-                </div>
+            </div>
+        }
+        <Footer />
 
-
-                
-            
-            {/*<div className='analytics-outer'>
-                <h3 style={{fontSize:"20px",textAlign:"center"}}>Analytics</h3>
-                <div className='analytics-container'>
-                    <div className='container1'>
-                        <div className='innerContainer1'>
-                            <div className='wrapper-head'>
-                                <h3>Visits</h3>
-                                <div className='data-info'>
-                                    <div className='data-text'>Day</div>
-                                    <div className='data-text'>Week</div>
-                                    <div className='data-text'>Month</div>
-                                    <div className='data-text'>Year</div>
-                                    <div className='data-text'>All Times</div>
-                                </div>
-                            </div>
-                            <div className='data-display'>
-                                Hello
-                            </div>
-
-                        </div>
-                        <div className='innerContainer2'>
-                            <div className='inner1'>
-                                <h3>Device</h3>
-                                <div className='data-display2'>
-
-                                </div>
-                            </div>
-                            <div className='inner1'>
-                                <h3>Browser</h3>
-                                <div className='data-display2'>
-                                    
-                                </div>
-                            </div>
-                            <div className='inner1'>
-                                <h3>OS</h3>
-                                <div className='data-display2'>
-                                    
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                    <div className='container2'>
-                        <h3>Location</h3>
-                        <div className='data-display3'>
-
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>*/}
-        </div>
-        <Footer/>
-
-        </>
+    </>
     );
 };
 
